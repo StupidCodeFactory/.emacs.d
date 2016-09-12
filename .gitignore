@@ -1,0 +1,8 @@
+*.elc
+.session
+.emacs.desktop
+ido.last
+*~
+rake.cache
+projectile-bookmarks.eld
+auto-save-list
