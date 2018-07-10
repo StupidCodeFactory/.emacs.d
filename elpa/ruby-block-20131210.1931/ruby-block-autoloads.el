@@ -1,9 +1,9 @@
 ;;; ruby-block-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil nil ("ruby-block.el") (22313 13221 913839 0))
+;;;### (autoloads nil nil ("ruby-block.el") (22571 38320 0 0))
 
 ;;;***
 

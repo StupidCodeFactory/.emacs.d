@@ -1,9 +1,9 @@
 ;;; bundler-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "bundler" "bundler.el" (22482 3676 0 0))
+;;;### (autoloads nil "bundler" "bundler.el" (22571 41443 0 0))
 ;;; Generated autoloads from bundler.el
 
 (autoload 'bundle-open "bundler" "\
