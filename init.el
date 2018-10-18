@@ -35,7 +35,7 @@
 (toggle-frame-fullscreen)
 (require 'ls-lisp)
 
-;; (set-face-attribute 'default nil :height 150)
+(set-face-attribute 'default nil :height 180)
 
 (require 'package)
 (add-to-list 'package-archives
@@ -52,18 +52,37 @@
 (setq direnv-always-show-summary t)
 (unless (package-installed-p 'karma)
   (package-install 'karma))
-;; (load-theme 'zenburn t)
+(load-theme 'sanityinc-tomorrow-night t)
 
-
+(global-git-gutter-mode +1)
 (require 'textmate)
 (textmate-mode t)
 
 (smartscan-mode 1)
 (global-linum-mode 1)
-(require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
+
+(require 'ivy)
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq ivy-count-format "(%d/%d) ")
+(setq enable-recursive-minibuffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
 
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
@@ -81,9 +100,9 @@
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
 
-
 (require 'inf-ruby)
 
+(require 'rspec-mode)
 (require 'ruby-mode)
 (require 'bundler)
 (require 'ruby-refactor)
@@ -115,8 +134,10 @@
 
 
 (require 'projectile)
+(projectile-mode +1)
 (projectile-global-mode)
 (projectile-rails-global-mode)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 (setq projectile-completion-system 'grizzl)
 
@@ -125,7 +146,6 @@
              '(ruby-mode
                "\\(class\\|def\\|do\\|if\\)" "\\(end\\)" "#"
                (lambda (arg) (ruby-end-of-block)) nil))
-(require 'rspec-mode)
 (require 'feature-mode)
 
 (eval-after-load 'rspec-mode
@@ -203,16 +223,19 @@
 (require 'rg)
 (rg-enable-default-bindings (kbd "M-s"))
 
-;; (set-face-attribute 'default (selected-frame) :height 200)
+(set-face-attribute 'default (selected-frame) :height 120)
+
+(require 'ensime)
+(require 'sbt-mode)
+(require 'scala-mode)
+
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(beacon-color "#cc6666")
+ '(beacon-color "#f2777a")
  '(c-default-style
    (quote
     ((java-mode . "java")
@@ -220,10 +243,9 @@
      (other . "bsd"))))
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
- '(custom-enabled-themes (quote (zenburn)))
  '(custom-safe-themes
    (quote
-    ("190a9882bef28d7e944aa610aa68fe1ee34ecea6127239178c7ac848754992df" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
+    ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "1b8d67b43ff1723960eb5e0cba512a2c7a2ad544ddb2533a90101fd1852b426e" "190a9882bef28d7e944aa610aa68fe1ee34ecea6127239178c7ac848754992df" "06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "628278136f88aa1a151bb2d6c8a86bf2b7631fbea5f0f76cba2a0079cd910f7d" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" "bb08c73af94ee74453c90422485b29e5643b73b05e8de029a6909af6a3fb3f58" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(desktop-file-name-format (quote local))
  '(desktop-save t)
  '(desktop-save-mode t)
@@ -289,24 +311,30 @@
       web-mode-markup-indent-offset web-mode-css-indent-offset web-mode-code-indent-offset web-mode-block-padding web-mode-script-padding web-mode-style-padding)
      (yaml-mode yaml-indent-offset))))
  '(editorconfig-mode t)
+ '(ensime-startup-notification nil)
  '(flycheck-color-mode-line-face-to-color (quote mode-line-buffer-id))
  '(frame-background-mode (quote dark))
- '(js-indent-level 4)
+ '(global-whitespace-newline-mode nil)
+ '(js-indent-level 2)
  '(make-backup-files nil)
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
  '(package-selected-packages
    (quote
-    (ripgrep mocha mocha-snippets company-solidity solidity-mode package-build shut-up epl git commander f dash s go-mode emmet-mode color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow karma dockerfile-mode docker editorconfig solarized-theme ecukes cask-mode cask emamux dracula-theme nginx-mode yaml-mode direnv markdown-mode+ markdown-preview-mode flymd markdown-mode jsx-mode jdee ctags-update ctags magit grizzl projectile-rails bundler ag company yasnippet textmate smartscan session ruby-tools ruby-refactor ruby-electric ruby-dev ruby-block rspec-mode robe projectile haml-mode fullframe flymake-ruby flx-ido feature-mode exec-path-from-shell chruby powerline)))
+    (counsel ivy yaml-mode git-gutter ruby-tools ruby-electric robe hcl-mode terraform-mode ensime ripgrep mocha mocha-snippets company-solidity package-build epl git commander f dash go-mode emmet-mode color-theme-sanityinc-solarized color-theme-sanityinc-tomorrow karma dockerfile-mode docker editorconfig ecukes cask-mode cask emamux dracula-theme nginx-mode direnv markdown-mode+ markdown-preview-mode flymd markdown-mode jsx-mode jdee ctags-update ctags magit grizzl bundler ag company ruby-dev ruby-block haml-mode fullframe flymake-ruby flx-ido feature-mode exec-path-from-shell chruby)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(robe-completing-read-func (quote ido-completing-read))
  '(rspec-autosave-buffer t)
  '(rspec-use-bundler-when-possible t)
  '(rspec-use-chruby t)
+ '(rspec-use-docker-when-possible nil)
+ '(rspec-use-opts-file-when-available nil)
+ '(rspec-use-rake-when-possible nil)
  '(rspec-use-spring-when-possible nil)
  '(ruby-deep-arglist nil)
  '(ruby-deep-indent-paren nil)
+ '(ruby-electric-newline-before-closing-bracket t)
  '(ruby-flymake-use-rubocop-if-available nil)
  '(session-use-package t nil (session))
  '(web-mode-auto-close-style 2)
