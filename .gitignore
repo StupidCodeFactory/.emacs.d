@@ -6,3 +6,13 @@ ido.last
 rake.cache
 projectile-bookmarks.eld
 auto-save-list
+elpa/*
+.cask
+.projectile-bookmarks.eld
+.projectile.cache
+image-dired/
+network-security.data
+powerline
+recentf
+transient
+.DS_Store
