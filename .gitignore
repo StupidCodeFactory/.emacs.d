@@ -16,3 +16,13 @@ powerline
 recentf
 transient
 .DS_Store
+.cache/
+.dap-breakpoints
+.lsp-session-v1
+bookmarks
+eclipse.jdt.ls/
+flycheck_init.el
+request/
+url/
+workspace/
+elpa/
